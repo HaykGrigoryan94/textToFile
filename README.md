@@ -1,16 +1,40 @@
 # Text to File Converter
 
-This Node.js project converts text input into various file formats including:
-- Text files (.txt)
-- Word documents (.docx)
-- Excel spreadsheets (.xlsx)
-- PDF documents (.pdf)
-- Images (.jpg, .png)
+A Node.js utility that converts text into multiple file formats with support for various languages and scripts.
+
+## Features
+
+- Converts text to multiple formats:
+  - Text files (.txt)
+  - Word documents (.docx)
+  - Excel spreadsheets (.xlsx)
+  - PDF documents (.pdf)
+  - Images (.jpg, .png)
+
+- Supports multiple languages and scripts:
+  - Amharic (Ethiopic)
+  - Arabic
+  - Hebrew
+  - Chinese (Simplified)
+  - Japanese
+  - Korean
+  - Russian (Cyrillic)
+  - Latin and other scripts
+
+- Automatic language detection
+- Right-to-Left (RTL) text support
+- Dynamic font downloading
+- Proper text wrapping and layout
 
 ## Installation
 
 1. Make sure you have Node.js installed on your system
-2. Clone this repository
+2. Clone this repository:
+```bash
+git clone https://github.com/HaykGrigoryan94/textToFile.git
+cd textToFile
+```
+
 3. Install dependencies:
 ```bash
 npm install
@@ -18,13 +42,15 @@ npm install
 
 ## Usage
 
-The project includes a `TextToFileConverter` class that handles the conversion of text to different file formats. All generated files will be saved in the `output` directory.
+### Basic Usage
 
 ```javascript
-const converter = new TextToFileConverter();
-const text = "Your text here";
+const { TextToFileConverter } = require('./index.js');
 
-// Convert text to all supported formats
+const converter = new TextToFileConverter();
+const text = "Your text here in any language";
+
+// Convert to all formats
 converter.convertTextToAllFormats(text)
     .then(paths => {
         console.log('Created files at:', paths);
@@ -32,27 +58,48 @@ converter.convertTextToAllFormats(text)
     .catch(error => {
         console.error('Error:', error);
     });
-
-// Or use individual methods:
-converter.createTxtFile(text, 'custom.txt');
-converter.createDocxFile(text, 'custom.docx');
-converter.createXlsxFile(text, 'custom.xlsx');
-converter.createPdfFile(text, 'custom.pdf');
-converter.createImageFile(text, 'jpg', 'custom.jpg');
-converter.createImageFile(text, 'png', 'custom.png');
 ```
 
-## Dependencies
+### Individual Format Conversion
 
-- docx: For creating Word documents
-- xlsx: For creating Excel spreadsheets
-- pdfkit: For creating PDF documents
-- sharp: For creating image files
-- fs-extra: For file system operations
+```javascript
+const converter = new TextToFileConverter();
+
+// Create TXT file
+await converter.createTxtFile(text, 'output.txt');
+
+// Create DOCX file
+await converter.createDocxFile(text, 'output.docx');
+
+// Create XLSX file
+await converter.createXlsxFile(text, 'output.xlsx');
+
+// Create PDF file
+await converter.createPdfFile(text, 'output.pdf');
+
+// Create image files
+await converter.createImageFile(text, 'jpg', 'output.jpg');
+await converter.createImageFile(text, 'png', 'output.png');
+```
+
+### Language Support Examples
+
+```javascript
+// Amharic
+const amharicText = `ቃል ሥጋ ሆነ በመጀመሪያ ቃል ነበረ፤`;
+
+// Russian
+const russianText = `В начале было Слово`;
+
+// Arabic
+const arabicText = `فِي الْبَدْءِ كَانَ الْكَلِمَةُ`;
+
+// The converter will automatically detect the language and use appropriate fonts
+```
 
 ## Output
 
-All generated files will be saved in the `output` directory. The default filenames are:
+All generated files will be saved in the `output` directory with the following default names:
 - output.txt
 - output.docx
 - output.xlsx
@@ -60,4 +107,23 @@ All generated files will be saved in the `output` directory. The default filenam
 - output.jpg
 - output.png
 
-You can specify custom filenames when using individual conversion methods. 
+## Dependencies
+
+- docx: For creating Word documents
+- xlsx: For creating Excel spreadsheets
+- pdfkit: For creating PDF documents
+- sharp: For creating image files
+- canvas: For text rendering in images
+- fs-extra: For enhanced file system operations
+
+## Testing
+
+Run the test script to see examples with different languages:
+
+```bash
+node test.js
+```
+
+## License
+
+MIT 
