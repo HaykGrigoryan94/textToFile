@@ -1,0 +1,4 @@
+node_modules/
+*.ttf
+output/
+.DS_Store 

@@ -1,0 +1,23 @@
+{
+  "name": "texttofile",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^3.1.0",
+    "docx": "^9.2.0",
+    "franc-min": "^6.2.0",
+    "fs-extra": "^11.3.0",
+    "https": "^1.0.0",
+    "langmap": "^0.0.16",
+    "pdfkit": "^0.16.0",
+    "sharp": "^0.33.5",
+    "xlsx": "^0.18.5"
+  }
+}
